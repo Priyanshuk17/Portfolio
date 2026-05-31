@@ -2,9 +2,6 @@ import dotenv from "dotenv";
 
 dotenv.config({ path: "./.env" });
 
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
- 
 import {connectDB} from "./db/index.js";
 import {app} from './app.js'
 
