@@ -7,7 +7,7 @@ app.use(
   cors({ 
     origin: [
       "http://localhost:5173",
-      "https://portfolio-kappa-sable-8cggpp2cng.vercel.app/"
+      "https://portfolio-kappa-sable-8cggpp2cng.vercel.app" // Removed /
     ],
     credentials: true, 
   }), 
