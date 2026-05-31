@@ -11,7 +11,9 @@ app.use(
 );
 
 app.use(express.json());
-
+app.get("/", (req, res) => {
+  res.send("Portfolio Backend is Running 🚀");
+});
 // routes
 import contactRoutes from "./routes/contactRoutes.js";
 import projectRoutes from "./routes/projects.route.js";
