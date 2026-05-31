@@ -1,6 +1,6 @@
 import axiosInstance from "./axiosInstance";
 
 export const sendContactMessage = async (data) => {
-  const response = await axiosInstance.post("/contact", data);
+  const response = await axiosInstance.post("/api/contact", data);
   return response.data.data;
 };
