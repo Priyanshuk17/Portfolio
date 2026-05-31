@@ -18,32 +18,43 @@ export const sendMessage = asyncHandler(async (req, res) => {
     message,
   });
 
-  console.log("Sending mail...");
+  try {
+    console.log("Sending mail...");
 
-  // Send email notification
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    replyTo: email,
-    to: process.env.EMAIL_USER,
-    subject: `New Contact Message from ${name}`,
-    text: `
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      replyTo: email,
+      to: process.env.EMAIL_USER,
+      subject: `New Contact Message from ${name}`,
+      text: `
 Name: ${name}
 Email: ${email}
 
 Message:
 ${message}
-    `,
-  });
+      `,
+    });
 
-  console.log("Email sent:", info.messageId);
+    console.log("Email sent:", info.messageId);
 
-  return res
-    .status(201)
-    .json(
+    return res.status(201).json(
       new ApiResponse(
         201,
         newMessage,
-        "Message Sent Successfully"
+        "Message sent successfully and email delivered"
       )
     );
+  } catch (error) {
+    console.error("MAIL ERROR:", error);
+
+    // Message DB me save ho chuka hai,
+    // email fail hua to bhi frontend ko response milega
+    return res.status(201).json(
+      new ApiResponse(
+        201,
+        newMessage,
+        "Message saved, but email notification failed"
+      )
+    );
+  }
 });
