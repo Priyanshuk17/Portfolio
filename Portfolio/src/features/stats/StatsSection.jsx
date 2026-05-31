@@ -54,7 +54,7 @@ const StatsSection = () => {
   useEffect(() => {
     const fetchStatsData = async () => {
       try {
-        const response = await axiosInstance.get(`/stats/dashboard`);
+        const response = await axiosInstance.get(`api/stats/dashboard`);
         const statsData = response.data.data;
 
         // 1. Setup LeetCode Data
